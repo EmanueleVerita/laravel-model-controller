@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+//controllers
+
+
+use App\Http\Controllers\Guest\MainController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,23 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $students = [
-        'Marco',
-        'Gino',
-        'Claudia',
-    ];
+Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/films/{id}' , [MainController::class, 'singlefilm'])->name('films.show');
 
-    $data = compact('students');
-
-    // dd($data);
-
-    return view('home', $data);
-
-    // return view('home', [
-    //     'students' => $students
-    // ]);
-});
 
 Route::get('/contatti', function () {
     return view('contact');
